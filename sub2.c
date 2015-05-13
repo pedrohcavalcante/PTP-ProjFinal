@@ -48,7 +48,6 @@ int carregar (dados_matriz *flood1, int jogadas){
 	FILE *jogo = fopen("jogo.txt", "r");
 	int i, j;
 	int subzero;
-
 	for (i=0;i<flood1->tamanho;i++){
 		for (j=0;j<flood1->tamanho;j++){
 			fscanf(jogo, "%i", &subzero);
@@ -62,9 +61,7 @@ int carregar (dados_matriz *flood1, int jogadas){
 	if (num2_jogadas == NULL){
 		printf("erro");
 	}else{
-		
 		fscanf(num2_jogadas, "%i", &numero);
-		
 	}
 	return numero;
 }

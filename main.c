@@ -5,11 +5,10 @@
 #include "sub1.c"
 #include "sub2.c"
 //Caso o usuário esteja usando o linux, desabilitar essa biblioteca conio.h
-#include <conio.h>
+//#include <conio.h>
 int main (void){
 	int teste, valorinicial, valornovo=0, linha, coluna,conta2;
 	int cont_jogada=0;
-	//system( "color fc");
 	dados_matriz flood1;
 	srand( time(NULL) );
 	printf(" =================================================================\n");
@@ -26,6 +25,7 @@ int main (void){
 		printf("Digite a dificuldade do seu jogo: 4 - facil\t 10 - medio\t 14 - dificil \n");
 		scanf("%i", &teste);
 	}
+	/*Switch para carregar o nível de dificuldade*/
 	int num_jogadas=0;
 	switch(teste){
 		case 4 : 
@@ -42,11 +42,12 @@ int main (void){
         break;
     }
     //Caso o usuário esteja usando o Windows, habilitar esse comando
-	system("cls");
+	//system("cls");
 	//Caso o usuário esteja usando o Linux, habilitar esse comando
-	//system("clear");
+	system("clear");
 	flood1.tamanho = teste;
 	gerar_matriz(&flood1);
+	/*Teste da condição de ganhar o jogo*/
 	while (cont_jogada < num_jogadas){  
         int aux=0;
 		for (linha=0; linha < flood1.tamanho ; linha++){
@@ -60,15 +61,21 @@ int main (void){
 				}
 			}
         }
-          
+          /* Condição para o jogo continuar executando */
     if ( aux != teste*teste){
 		printf("Digite sua jogada (0 a 5). Digite 7 para SALVAR. 8 para CARREGAR. 9 para SAIR\n");
 		scanf("%i", &valornovo);
+		/* Testa se o valor digitado é válido para a execução do jogo */
+		while (valornovo > 9 && valornovo < 0  && valornovo == 6 ){
+			printf("Digite sua jogada (0 a 5). Digite 7 para SALVAR. 8 para CARREGAR. 9 para SAIR\n");
+			scanf("%i", &valornovo);
+		}
     }
 	//Caso o usuário esteja usando o Windows, habilitar esse comando
-	system("cls");
+	//system("cls");
 	//Caso o usuário esteja usando o Linux, habilitar esse comando
-	//system("clear");
+	system("clear");
+	/* Switch para a escolha das opções de jogo */
 	switch (valornovo){
 		case 7:
 			salvar(&flood1, conta2);
@@ -80,6 +87,7 @@ int main (void){
 			}
 			
 		default:
+		/* Inundação da Matriz */
 			if ( valornovo !=7 && valornovo !=9 && valornovo !=8 && valornovo <= 5){
 				valorinicial = flood1.matriz[0][0];
 			}
@@ -103,6 +111,7 @@ int main (void){
 			}				  
 		}
 	}
+	/* Uso de rótulo como estrutura de finalização do jogo */
 	fim:
 	return 0;
 }

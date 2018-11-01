@@ -44,6 +44,7 @@ void salvar (dados_matriz *flood1, int jogadas){
 		fclose(num_jogadas);
 	}
 }
+// Há uma inconsistência ao rodar no gdb
 int carregar (dados_matriz *flood1, int jogadas){
 	FILE *jogo = fopen("jogo.txt", "r");
 	int i, j;
